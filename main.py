@@ -39,7 +39,11 @@ class progressBar():
             print()
 
 
-pb = progressBar()
+def main():
+    pb = progressBar()
 
-pb.draw(1)
-pb.draw(0)
+    pb.draw(1)
+    pb.draw(0)
+
+if __name__ == '__main__':
+    main()
