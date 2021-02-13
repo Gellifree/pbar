@@ -17,7 +17,7 @@ import os
 class progressBar():
     def Counter(self, *args):
         if args:
-            for i in args:
+            for i in range(len(args) + 1):
                 length = len(args)
                 percent = i / length * 100
                 print(">> Loading:", int(percent),
@@ -35,13 +35,13 @@ class progressBar():
             barLoad = "#"
             barSize = 100
 
-            for i in args:
+            for i in range(len(args) + 1):
                 length = len(args)
                 percent = i / length * 100
                 print(barStart, end="")
-                for i in range(int(percent)):
+                for j in range(int(percent)):
                     print(barLoad, end="")
-                for i in range(barSize - int(percent)):
+                for k in range(barSize - int(percent)):
                     print(barFill, end="")
                 print(barEnd, i, "/", length, end="\r")
                 time.sleep(0.05)
@@ -52,5 +52,7 @@ class progressBar():
 
 if __name__ == '__main__':
     pb = progressBar()
-    pb.Bar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
-    pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+    pb.Bar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+           "kiscica", "anyad", 12, 12, 123, 3124, 12523)
+    pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+               "kiscica", "anyad", 12, 12, 123, 3124, 12523)
