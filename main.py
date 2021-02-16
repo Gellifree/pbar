@@ -20,6 +20,7 @@ import time
 import os
 from sys import platform
 
+what = []
 
 class progressBar():
     def Counter(self, *args):
@@ -27,14 +28,13 @@ class progressBar():
             for i in range(len(args) + 1):
                 length = len(args)
                 percent = i / length * 100
-                print(">> Loading:", int(percent),
-                      "%", i, "/", length, end="\r")
+                print(">> Loading:", int(percent), "%", i, "/", length, end="\r")
                 time.sleep(0.05)
             print()
         else:
             print("Error, no arguments given.")
 
-    def Bar(self, *args):
+    def Bar(self, func, *args):
         if args:
             barStart = "["
             barEnd = "]"
@@ -53,14 +53,27 @@ class progressBar():
                     print(barLoad, end="")
                 for k in range(barSize - int(percent)):
                     print(barFill, end="")
+
+                if(i < len(args)):
+                    func(what, args[i])
+
                 print(barEnd, i, "/", length, end="\r")
-                time.sleep(0.05)
+                #time.sleep(0.05)
             print()
         else:
             print("Error, no arguments given.")
 
+def collect(list, data):
+    list.append(data)
+    a = 1
+    #Something timeconsuming
+    for i in range(1000000):
+        a = a ** a
+
 
 if __name__ == '__main__':
     pb = progressBar()
-    pb.Bar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
-    pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
+    pb.Bar(collect, 1,2,3,4,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,22,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,34,34,34,345,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,33)
+    pb.Bar(collect, "Helló", "világ", "!")
+    print("\n", what)
+    #pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
