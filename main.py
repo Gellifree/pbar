@@ -18,6 +18,7 @@
 
 import time
 import os
+from sys import platform
 
 
 class progressBar():
@@ -39,11 +40,14 @@ class progressBar():
             barEnd = "]"
             barFill = "-"
             barLoad = "#"
-            barSize = 100
+            if(platform == "linux" or platform == "linux2"):
+                barSize = os.get_terminal_size().columns - 10
+            else:
+                barSize = 100
 
             for i in range(len(args) + 1):
                 length = len(args)
-                percent = i / length * 100
+                percent = i / length * barSize
                 print(barStart, end="")
                 for j in range(int(percent)):
                     print(barLoad, end="")
@@ -58,7 +62,5 @@ class progressBar():
 
 if __name__ == '__main__':
     pb = progressBar()
-    pb.Bar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-           "kiscica", "anyad", 12, 12, 123, 3124, 12523)
-    pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-               "kiscica", "anyad", 12, 12, 123, 3124, 12523)
+    pb.Bar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
+    pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
