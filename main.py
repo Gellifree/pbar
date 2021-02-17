@@ -22,6 +22,17 @@ from sys import platform
 
 what = []
 
+
+class progressBar_v2():
+    def __init__(self, size = 10):
+        self.size = size
+        self.percent = 0
+
+    def signal(self):
+        self.percent += 1
+        # Ez még nemjo!
+
+
 class progressBar():
     def Counter(self, *args):
         if args:
@@ -73,7 +84,7 @@ def collect(list, data):
 
 if __name__ == '__main__':
     pb = progressBar()
-    pb.Bar(collect, 1,2,3,4,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,22,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,34,34,34,345,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,33)
+    pb.Bar(collect,3,3,3,3,3,3,3,3,3,33)
     pb.Bar(collect, "Helló", "világ", "!")
     print("\n", what)
     #pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
