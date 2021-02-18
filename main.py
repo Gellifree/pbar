@@ -44,6 +44,7 @@ class progressBar():
             print()
         else:
             print("Error, no arguments given.")
+            #Komment
 
     def Bar(self, func, *args):
         if args:
