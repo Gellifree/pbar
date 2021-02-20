@@ -40,7 +40,7 @@ class progressBar():
             barEnd = "]"
             barFill = "-"
             barLoad = "#"
-            if(platform == "linux" or platform == "linux2"):
+            if(platform == "linux" or platform == "linux2" or platform == "win32" or platform == "darwin"):
                 barSize = os.get_terminal_size().columns - 10
             else:
                 barSize = 100
