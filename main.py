@@ -30,7 +30,7 @@ class progressBar_Signal():
 
 
     def signal(self):
-        self.indexer += 1
+        self.receiver += 1
         if(self.receiver > 0 and self.receiver <= 200000):
             self.position = 0
         elif(self.receiver > 200000 and self.receiver <= 400000):
