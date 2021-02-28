@@ -16,76 +16,51 @@
 #  /\_/ / ___) || (_| ||__   _|
 #  \___/ |____/  \__,_|   |_|
 
-import time
+import time, random
 import os
 from sys import platform
 
-what = []
 
 
-class progressBar_v2():
-    def __init__(self, size = 10):
-        self.size = size
-        self.percent = 0
+class progressBar_Signal():
+    def __init__(self):
+        self.barStatus = ["[*  ]","[ * ]", "[  *]"]
+        self.indexer = 0
+        self.position = 0
+
 
     def signal(self):
-        self.percent += 1
-        # Ez még nemjo!
+        self.indexer += 1
+        if(self.indexer > 0 and self.indexer <= 200000):
+            self.position = 0
+        elif(self.indexer > 200000 and self.indexer <= 400000):
+            self.position = 1
+        elif(self.indexer > 400000 and self.indexer <= 600000):
+            self.position  = 2
 
+        if(self.indexer == 600000):
+            self.indexer = 0
+        print(self.barStatus[self.position], end="\r")
 
-class progressBar():
-    def Counter(self, *args):
-        if args:
-            for i in range(len(args) + 1):
-                length = len(args)
-                percent = i / length * 100
-                print(">> Loading:", int(percent), "%", i, "/", length, end="\r")
-                time.sleep(0.05)
-            print()
-        else:
-            print("Error, no arguments given.")
-            #Komment
+pb = progressBar_Signal()
 
-    def Bar(self, func, *args):
-        if args:
-            barStart = "["
-            barEnd = "]"
-            barFill = "-"
-            barLoad = "#"
-            if(platform == "linux" or platform == "linux2"):
-                barSize = os.get_terminal_size().columns - 10
-            else:
-                barSize = 100
+def linearSearch(list, searched):
+    for i in range(len(list)):
+        pb.signal()
+        if(list[i] == searched):
+            print("\n Found!")
+            return i
+    print("\nNot found!")
+    return -1
 
-            for i in range(len(args) + 1):
-                length = len(args)
-                percent = i / length * barSize
-                print(barStart, end="")
-                for j in range(int(percent)):
-                    print(barLoad, end="")
-                for k in range(barSize - int(percent)):
-                    print(barFill, end="")
-
-                if(i < len(args)):
-                    func(what, args[i])
-
-                print(barEnd, i, "/", length, end="\r")
-                #time.sleep(0.05)
-            print()
-        else:
-            print("Error, no arguments given.")
-
-def collect(list, data):
-    list.append(data)
-    a = 1
-    #Something timeconsuming
-    for i in range(1000000):
-        a = a ** a
-
+def generateList(length):
+    result = []
+    for i in range(length):
+        pb.signal()
+        result.append(random.randint(1,10000000))
+    print("\n Generate Done")
+    return result
 
 if __name__ == '__main__':
-    pb = progressBar()
-    pb.Bar(collect,3,3,3,3,3,3,3,3,3,33)
-    pb.Bar(collect, "Helló", "világ", "!")
-    print("\n", what)
-    #pb.Counter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "kiscica", "anyad", 12, 12, 123, 3124, 12523)
+    list = generateList(1000000)
+    print(linearSearch(list, 5))
