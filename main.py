@@ -25,21 +25,21 @@ from sys import platform
 class progressBar_Signal():
     def __init__(self):
         self.barStatus = ["[*  ]","[ * ]", "[  *]"]
-        self.indexer = 0
+        self.receiver = 0
         self.position = 0
 
 
     def signal(self):
         self.indexer += 1
-        if(self.indexer > 0 and self.indexer <= 200000):
+        if(self.receiver > 0 and self.receiver <= 200000):
             self.position = 0
-        elif(self.indexer > 200000 and self.indexer <= 400000):
+        elif(self.receiver > 200000 and self.receiver <= 400000):
             self.position = 1
-        elif(self.indexer > 400000 and self.indexer <= 600000):
+        elif(self.receiver > 400000 and self.receiver <= 600000):
             self.position  = 2
 
-        if(self.indexer == 600000):
-            self.indexer = 0
+        if(self.receiver == 600000):
+            self.receiver = 0
         print(self.barStatus[self.position], end="\r")
 
 pb = progressBar_Signal()
