@@ -1,2 +1,3 @@
 # pbar
-Loading bar to console applications
+
+Egy terminálablakra tervezett töltési animáció, pythonban elkészítve
